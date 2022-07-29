@@ -2,8 +2,8 @@
 start();
 
 async function start() {
-   const secretWord = await getWord();
-   console.log(secretWord);
+   const word = await getWord();
+   const secretWord = word.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
    const secretWordField = getDOM("p");
    const wrongGuessesField = getDOM(".wrong-guesses-field");
    const winMessage = getDOM("#win-message");

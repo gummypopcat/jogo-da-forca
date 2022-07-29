@@ -1,0 +1,15 @@
+{
+  "name": "forca-front",
+  "version": "1.0.0",
+  "description": "Um jogo simples de forca",
+  "main": "index.html",
+  "repository": "git@github.com:gummypopcat/jogo-da-forca.git",
+  "author": "<dandanveiga1@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+     "start": "http-server ./ -c-1"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
