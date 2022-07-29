@@ -1,8 +1,9 @@
 
 start();
 
-function start() {
-   const secretWord = "salve";
+async function start() {
+   const secretWord = await getWord();
+   console.log(secretWord);
    const secretWordField = getDOM("p");
    const wrongGuessesField = getDOM(".wrong-guesses-field");
    const winMessage = getDOM("#win-message");
@@ -41,18 +42,18 @@ function start() {
       const userGuess = input.value;
       clearInput();
 
-      if(userGuess.length == 1) {
-         if(secretWord.includes(userGuess)) {
+      if (userGuess.length == 1) {
+         if (secretWord.includes(userGuess)) {
             updateUnderlinedWord(userGuess);
-            if(checkWin(userGuess)) showWinMessage();
-         } 
+            if (checkWin(userGuess)) showWinMessage();
+         }
          else {
             wrongGuessEffect();
             updateWrongGuesses(userGuess);
          }
       }
-      else if(userGuess.length > 1) {
-         if(checkWin(userGuess)) showWinMessage();
+      else if (userGuess.length > 1) {
+         if (checkWin(userGuess)) showWinMessage();
          else wrongGuessEffect();
       }
    }
@@ -74,7 +75,7 @@ function start() {
    }
 
    function checkWin(userGuess) {
-      if(underlinedWord == secretWord || secretWord == userGuess) {
+      if (underlinedWord == secretWord || secretWord == userGuess) {
          return true;
       }
 
@@ -99,3 +100,9 @@ function start() {
    }
 }
 
+async function getWord() {
+   const response = await fetch("https://api.dicionario-aberto.net/random").then(
+      (response) => response.json()
+   );
+   return response.word;
+}
