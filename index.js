@@ -59,6 +59,9 @@ async function start() {
    }
 
    function updateWrongGuesses(guess) {
+      if (userWrongGuesses.includes(guess))
+         return;
+
       userWrongGuesses += guess;
       wrongGuessesField.innerHTML = userWrongGuesses;
    }
